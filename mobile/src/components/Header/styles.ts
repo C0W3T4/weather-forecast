@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
     maxWidth: '35%',
   },
   emoji: {
-    fontSize: 30,
+    fontSize: 32,
     paddingRight: 40,
     alignItems: 'center',
   },

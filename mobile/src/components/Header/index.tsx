@@ -22,7 +22,7 @@ export const Header = ({ title, emoji, setHome, subtitle }: HeaderProps) => {
       <View style={styles.headerRightContent}>
         {emoji &&
           <Text style={styles.emoji}>
-            😄
+            🌡
           </Text>
         }
         {setHome &&

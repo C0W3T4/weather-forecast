@@ -6,9 +6,9 @@ Mobile application to view detailed weather forecasts, current conditions, and m
 
 ## ✨ Technologies
 
-### Mobile app
-
 This project was developed using the following technologies:
+
+### Mobile app
 
 - [React Native](https://reactnative.dev/)
 - [Expo](https://expo.dev/)

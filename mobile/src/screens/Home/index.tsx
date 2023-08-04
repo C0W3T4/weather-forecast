@@ -7,7 +7,7 @@ import { Header } from '../../components/Header';
 import { HomeCard } from '../../components/HomeCard';
 import { LoadAnimation } from '../../components/LoadAnimation';
 import api from '../../services/api';
-import { getCurrentLocationModule } from '../../services/location';
+import { getCurrentLocationService } from '../../services/location';
 import { StackNavigation } from '../../types/navigation';
 import { WeatherProps } from '../../types/weather';
 import { styles } from './styles';
@@ -26,7 +26,7 @@ export function Home() {
   }
 
   async function getCurrentLocation(): Promise<void> {
-    setCurrentLocation(await getCurrentLocationModule.getLocation());
+    setCurrentLocation(await getCurrentLocationService());
   }
 
   async function fetchWeatherData(): Promise<void> {

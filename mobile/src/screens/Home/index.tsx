@@ -1,32 +1,35 @@
-import { useNavigation } from '@react-navigation/native';
-import { AxiosResponse } from 'axios';
-import * as Location from 'expo-location';
-import { useEffect, useState } from 'react';
-import { Alert, FlatList, SafeAreaView, View } from 'react-native';
-import { Header } from '../../components/Header';
-import { HomeCard } from '../../components/HomeCard';
-import { LoadAnimation } from '../../components/LoadAnimation';
-import api from '../../services/api';
-import { getCurrentLocationService } from '../../services/location';
-import { StackNavigation } from '../../types/navigation';
-import { WeatherProps } from '../../types/weather';
-import { styles } from './styles';
+import { useNavigation } from '@react-navigation/native'
+import { AxiosResponse } from 'axios'
+import * as Location from 'expo-location'
+import { useEffect, useState } from 'react'
+import { Alert, FlatList, SafeAreaView, View } from 'react-native'
+import { Header } from '../../components/Header'
+import { HomeCard } from '../../components/HomeCard'
+import { LoadAnimation } from '../../components/LoadAnimation'
+import api from '../../services/api'
+import { getCurrentLocationService } from '../../services/location'
+import { StackNavigation } from '../../types/navigation'
+import { WeatherProps } from '../../types/weather'
+import { styles } from './styles'
 
 export function Home() {
-  const [currentLocation, setCurrentLocation] = useState<Location.LocationObject>();
+  const [currentLocation, setCurrentLocation] =
+    useState<Location.LocationObject>()
 
-  const [locationWeatherData, setLocationWeatherData] = useState<WeatherProps[]>([]);
+  const [locationWeatherData, setLocationWeatherData] = useState<
+    WeatherProps[]
+  >([])
 
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true)
 
-  const { navigate } = useNavigation<StackNavigation>();
+  const { navigate } = useNavigation<StackNavigation>()
 
   function handleSelectedCityWeather(weatherInfo: WeatherProps): void {
-    navigate('WeatherDescription', { weatherInfo });
+    navigate('WeatherDescription', { weatherInfo })
   }
 
   async function getCurrentLocation(): Promise<void> {
-    setCurrentLocation(await getCurrentLocationService());
+    setCurrentLocation(await getCurrentLocationService())
   }
 
   async function fetchWeatherData(): Promise<void> {
@@ -35,93 +38,100 @@ export function Home() {
         params: {
           lat: currentLocation?.coords?.latitude,
           lon: currentLocation?.coords?.longitude,
-          units: 'metric'
-        }
+          units: 'metric',
+        },
       }),
       api.get('/weather', {
         params: {
           q: 'Lisbon',
-          units: 'metric'
-        }
+          units: 'metric',
+        },
       }),
       api.get('/weather', {
         params: {
           q: 'Madrid',
-          units: 'metric'
-        }
+          units: 'metric',
+        },
       }),
       api.get('/weather', {
         params: {
           q: 'Paris',
-          units: 'metric'
-        }
+          units: 'metric',
+        },
       }),
       api.get('/weather', {
         params: {
           q: 'Berlin',
-          units: 'metric'
-        }
+          units: 'metric',
+        },
       }),
       api.get('/weather', {
         params: {
           q: 'Copenhagen',
-          units: 'metric'
-        }
+          units: 'metric',
+        },
       }),
       api.get('/weather', {
         params: {
           q: 'Rome',
-          units: 'metric'
-        }
+          units: 'metric',
+        },
       }),
       api.get('/weather', {
         params: {
           q: 'London',
-          units: 'metric'
-        }
+          units: 'metric',
+        },
       }),
       api.get('/weather', {
         params: {
           q: 'Dublin',
-          units: 'metric'
-        }
+          units: 'metric',
+        },
       }),
       api.get('/weather', {
         params: {
           q: 'Prague',
-          units: 'metric'
-        }
+          units: 'metric',
+        },
       }),
       api.get('/weather', {
         params: {
           q: 'Vienna',
-          units: 'metric'
-        }
+          units: 'metric',
+        },
       }),
-    ]).then(
-      responses => responses.map(
-        (response: AxiosResponse<WeatherProps, unknown>) => response.data
+    ])
+      .then((responses) =>
+        responses.map(
+          (response: AxiosResponse<WeatherProps, unknown>) => response.data,
+        ),
       )
-    ).then(data => {
-      if (!data) {
-        return setLoading(true);
-      }
+      .then((data) => {
+        if (!data) {
+          return setLoading(true)
+        }
 
-      setLocationWeatherData(data);
+        setLocationWeatherData(data)
 
-      setLoading(false);
-    }).catch(error => Alert.alert(error));
+        setLoading(false)
+      })
+      .catch(() => Alert.alert("Couldn't get weather data!"))
   }
 
   useEffect(() => {
-    getCurrentLocation();
-  }, []);
+    getCurrentLocation()
+  }, [])
 
   useEffect(() => {
-    if (currentLocation?.coords?.latitude && currentLocation?.coords?.longitude) {
-      fetchWeatherData();
+    if (
+      currentLocation?.coords?.latitude &&
+      currentLocation?.coords?.longitude
+    ) {
+      fetchWeatherData()
     }
-  }, [currentLocation]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentLocation])
 
   if (loading) {
     return <LoadAnimation />
@@ -130,11 +140,7 @@ export function Home() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Header
-          title="Hello"
-          subtitle="See how the weather is."
-          emoji={true}
-        />
+        <Header title="Hello" subtitle="See how the weather is." emoji={true} />
       </View>
       <View style={styles.cityWeatherContent}>
         <FlatList
@@ -152,5 +158,5 @@ export function Home() {
         />
       </View>
     </SafeAreaView>
-  );
+  )
 }

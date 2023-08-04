@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { theme } from '../../global/styles/theme';
+import { StyleSheet } from 'react-native'
+import { theme } from '../../global/styles/theme'
 
 export const styles = StyleSheet.create({
   container: {
@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
   },
   detailsContent: {
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   secondListDetails: {
     width: '100%',
@@ -60,5 +60,5 @@ export const styles = StyleSheet.create({
   detailsInfo: {
     color: theme.colors.text_color,
     fontFamily: theme.fonts.text,
-  }
-});
+  },
+})

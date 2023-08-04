@@ -1,29 +1,31 @@
-import { FontAwesome, FontAwesome5, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { useRoute } from '@react-navigation/native';
-import { Image, SafeAreaView, Text, View } from 'react-native';
-import { Header } from '../../components/Header';
-import { WeatherProps } from '../../types/weather';
-import { capitalize } from '../../utils/capitalize';
-import { removeDecimals } from '../../utils/removeDecimals';
-import { weatherIcons } from '../../utils/weatherIcons';
-import { styles } from './styles';
+import {
+  FontAwesome,
+  FontAwesome5,
+  Ionicons,
+  MaterialCommunityIcons,
+} from '@expo/vector-icons'
+import { useRoute } from '@react-navigation/native'
+import { Image, SafeAreaView, Text, View } from 'react-native'
+import { Header } from '../../components/Header'
+import { WeatherProps } from '../../types/weather'
+import { capitalize } from '../../utils/capitalize'
+import { removeDecimals } from '../../utils/removeDecimals'
+import { weatherIcons } from '../../utils/weatherIcons'
+import { styles } from './styles'
 
 interface RouteParams {
-  weatherInfo: WeatherProps;
+  weatherInfo: WeatherProps
 }
 
 export function WeatherDescription() {
-  const route = useRoute();
+  const route = useRoute()
 
-  const { weatherInfo } = route.params as RouteParams;
+  const { weatherInfo } = route.params as RouteParams
 
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <Header
-          title={weatherInfo?.name}
-          setHome={true}
-        />
+        <Header title={weatherInfo?.name} setHome={true} />
       </View>
       <View style={styles.weatherInfoContent}>
         <Text style={styles.weatherDescription}>
@@ -33,6 +35,7 @@ export function WeatherDescription() {
           <Image
             style={styles.weatherIcon}
             source={weatherIcons(weatherInfo.weather?.[0].icon)}
+            alt="Weather icon"
           />
         )}
         <Text style={styles.temp}>
@@ -64,7 +67,8 @@ export function WeatherDescription() {
               <View style={styles.detailsContent}>
                 <FontAwesome5 name="water" size={24} color="white" />
                 <Text style={styles.detailsInfo}>
-                  {weatherInfo.main?.pressure}{`\n`}hPa
+                  {weatherInfo.main?.pressure}
+                  {`\n`}hPa
                 </Text>
               </View>
               <View style={styles.detailsContent}>
@@ -74,7 +78,11 @@ export function WeatherDescription() {
                 </Text>
               </View>
               <View style={styles.detailsContent}>
-                <MaterialCommunityIcons name="weather-fog" size={24} color="white" />
+                <MaterialCommunityIcons
+                  name="weather-fog"
+                  size={24}
+                  color="white"
+                />
                 <Text style={styles.detailsInfo}>
                   {weatherInfo.clouds?.all}%
                 </Text>
@@ -84,5 +92,5 @@ export function WeatherDescription() {
         </View>
       </View>
     </SafeAreaView>
-  );
+  )
 }

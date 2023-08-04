@@ -1,18 +1,18 @@
-import { RectButtonProps } from 'react-native-gesture-handler';
+import { RectButtonProps } from 'react-native-gesture-handler'
 
 export interface HomeCardProps extends RectButtonProps {
   data: {
     weather?: [
       {
-        icon?: string;
-      }
+        icon?: string
+      },
     ]
     main?: {
-      temp?: number;
+      temp?: number
     }
     sys?: {
-      country?: string;
+      country?: string
     }
-    name?: string;
+    name?: string
   }
 }

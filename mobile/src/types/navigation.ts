@@ -1,13 +1,14 @@
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
+import { StackNavigationProp } from '@react-navigation/stack'
 
-export type StackParamList = {
-  Home: any;
-  WeatherDescription: any;
-};
+export type StackScreens = 'Home' | 'WeatherDescription'
 
-export type BottomTabParamList = {};
+export type BottomTabScreens = ''
 
-export type StackNavigation = StackNavigationProp<StackParamList>;
+export type StackParamList = Record<StackScreens, object | undefined>
 
-export type BottomTabNavigation = BottomTabNavigationProp<BottomTabParamList>;
+export type BottomTabParamList = Record<BottomTabScreens, object | undefined>
+
+export type StackNavigation = StackNavigationProp<StackParamList>
+
+export type BottomTabNavigation = BottomTabNavigationProp<BottomTabParamList>

@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { theme } from '../../global/styles/theme';
+import { StyleSheet } from 'react-native'
+import { theme } from '../../global/styles/theme'
 
 export const styles = StyleSheet.create({
   container: {
@@ -36,5 +36,5 @@ export const styles = StyleSheet.create({
   tempText: {
     color: theme.colors.text_color,
     fontFamily: theme.fonts.text,
-  }
-});
+  },
+})

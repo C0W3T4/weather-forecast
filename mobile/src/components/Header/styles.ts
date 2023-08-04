@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native';
-import { getStatusBarHeight } from 'react-native-platform-helper';
-import { theme } from '../../global/styles/theme';
+import { StyleSheet } from 'react-native'
+import { getStatusBarHeight } from 'react-native-platform-helper'
+import { theme } from '../../global/styles/theme'
 
 export const styles = StyleSheet.create({
   container: {
@@ -41,5 +41,5 @@ export const styles = StyleSheet.create({
   homeIcon: {
     paddingRight: 40,
     alignItems: 'center',
-  }
-});
+  },
+})

@@ -14,5 +14,5 @@ export const theme = {
   fonts: {
     title: 'Poppins_700Bold',
     text: 'Merriweather_400Regular',
-  }
-};
+  },
+}

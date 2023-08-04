@@ -1,16 +1,16 @@
-import { FontAwesome5 } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
-import { Text, View } from 'react-native';
-import { theme } from '../../global/styles/theme';
-import { HeaderProps } from '../../types/header';
-import { StackNavigation } from '../../types/navigation';
-import { styles } from './styles';
+import { FontAwesome5 } from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native'
+import { Text, View } from 'react-native'
+import { theme } from '../../global/styles/theme'
+import { HeaderProps } from '../../types/header'
+import { StackNavigation } from '../../types/navigation'
+import { styles } from './styles'
 
 export const Header = ({ title, emoji, setHome, subtitle }: HeaderProps) => {
-  const { navigate } = useNavigation<StackNavigation>();
+  const { navigate } = useNavigation<StackNavigation>()
 
   function handleGoBack(): void {
-    navigate('Home');
+    navigate('Home')
   }
 
   return (
@@ -20,12 +20,8 @@ export const Header = ({ title, emoji, setHome, subtitle }: HeaderProps) => {
         <Text style={styles.subtitle}>{subtitle}</Text>
       </View>
       <View style={styles.headerRightContent}>
-        {emoji &&
-          <Text style={styles.emoji}>
-            🌡
-          </Text>
-        }
-        {setHome &&
+        {emoji && <Text style={styles.emoji}>🌡</Text>}
+        {setHome && (
           <FontAwesome5
             name="home"
             size={24}
@@ -33,8 +29,8 @@ export const Header = ({ title, emoji, setHome, subtitle }: HeaderProps) => {
             style={styles.homeIcon}
             onPress={handleGoBack}
           />
-        }
+        )}
       </View>
     </View>
-  );
+  )
 }

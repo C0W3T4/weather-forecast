@@ -12,4 +12,10 @@ This project was developed using the following technologies:
 
 - [React Native](https://reactnative.dev/)
 - [Expo](https://expo.dev/)
+- [Axios](https://axios-http.com/)
 - [TypeScript](https://www.typescriptlang.org/)
+- [ESLint](https://eslint.org/)
+
+## 🚀 How to run
+
+- Read `mobile/README.md`

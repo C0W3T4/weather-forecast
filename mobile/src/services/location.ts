@@ -1,12 +1,12 @@
-import Constants from 'expo-constants';
+import * as Device from 'expo-device';
 import * as Location from 'expo-location';
 import { Alert, Platform } from 'react-native';
 
 export const getCurrentLocationModule = {
-  GetLocation: async function () {
-    if (Platform.OS === 'android' && !Constants.isDevice) {
+  getLocation: async () => {
+    if (Platform.OS === 'android' && !Device.isDevice) {
       Alert.alert(
-        'Oops, this will not work in an Android emulator. Try it on your device!'
+        'This will not work in an Android emulator. Try it on your device!'
       );
       return;
     }

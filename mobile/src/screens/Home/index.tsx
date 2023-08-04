@@ -1,5 +1,5 @@
-import { WEATHER_API_KEY } from '@env';
 import { useNavigation } from '@react-navigation/native';
+import { AxiosResponse } from 'axios';
 import * as Location from 'expo-location';
 import { useEffect, useState } from 'react';
 import { Alert, FlatList, SafeAreaView, View } from 'react-native';
@@ -7,8 +7,7 @@ import { Header } from '../../components/Header';
 import { HomeCard } from '../../components/HomeCard';
 import { LoadAnimation } from '../../components/LoadAnimation';
 import api from '../../services/api';
-import { getCurrentLocationModule } from '../../services/getCurrentLocation';
-import { allGetCalls } from '../../services/setGetCalls';
+import { getCurrentLocationModule } from '../../services/location';
 import { StackNavigation } from '../../types/navigation';
 import { WeatherProps } from '../../types/weather';
 import { styles } from './styles';
@@ -27,26 +26,82 @@ export function Home() {
   }
 
   async function getCurrentLocation(): Promise<void> {
-    setCurrentLocation(await getCurrentLocationModule.GetLocation());
+    setCurrentLocation(await getCurrentLocationModule.getLocation());
   }
 
   async function fetchWeatherData(): Promise<void> {
-    const currentLocationData = `/weather?lat=${currentLocation?.coords?.latitude}&lon=${currentLocation?.coords?.longitude}&units=metric&appid=${WEATHER_API_KEY}`;
-
     await Promise.all([
-      api.get(currentLocationData),
-      api.get(allGetCalls.lisbonData),
-      api.get(allGetCalls.madridData),
-      api.get(allGetCalls.parisData),
-      api.get(allGetCalls.berlinData),
-      api.get(allGetCalls.copenhagenData),
-      api.get(allGetCalls.romeData),
-      api.get(allGetCalls.londonData),
-      api.get(allGetCalls.dublinData),
-      api.get(allGetCalls.pragueData),
-      api.get(allGetCalls.viennaData),
+      api.get('/weather', {
+        params: {
+          lat: currentLocation?.coords?.latitude,
+          lon: currentLocation?.coords?.longitude,
+          units: 'metric'
+        }
+      }),
+      api.get('/weather', {
+        params: {
+          q: 'Lisbon',
+          units: 'metric'
+        }
+      }),
+      api.get('/weather', {
+        params: {
+          q: 'Madrid',
+          units: 'metric'
+        }
+      }),
+      api.get('/weather', {
+        params: {
+          q: 'Paris',
+          units: 'metric'
+        }
+      }),
+      api.get('/weather', {
+        params: {
+          q: 'Berlin',
+          units: 'metric'
+        }
+      }),
+      api.get('/weather', {
+        params: {
+          q: 'Copenhagen',
+          units: 'metric'
+        }
+      }),
+      api.get('/weather', {
+        params: {
+          q: 'Rome',
+          units: 'metric'
+        }
+      }),
+      api.get('/weather', {
+        params: {
+          q: 'London',
+          units: 'metric'
+        }
+      }),
+      api.get('/weather', {
+        params: {
+          q: 'Dublin',
+          units: 'metric'
+        }
+      }),
+      api.get('/weather', {
+        params: {
+          q: 'Prague',
+          units: 'metric'
+        }
+      }),
+      api.get('/weather', {
+        params: {
+          q: 'Vienna',
+          units: 'metric'
+        }
+      }),
     ]).then(
-      responses => Promise.all(responses.map((response) => response.data))
+      responses => responses.map(
+        (response: AxiosResponse<WeatherProps, unknown>) => response.data
+      )
     ).then(data => {
       if (!data) {
         return setLoading(true);

@@ -13,7 +13,7 @@ import Icon11n from '../assets/images/weather/11n/11n.png'
 import Icon13d from '../assets/images/weather/13d/13d.png'
 import Icon13n from '../assets/images/weather/13n/13n.png'
 
-export function weatherIcons(iconId: string): ImageSourcePropType {
+export function weatherIcons(iconId?: string): ImageSourcePropType | undefined {
   switch (iconId) {
     case '01d':
       return Icon01d
@@ -52,6 +52,6 @@ export function weatherIcons(iconId: string): ImageSourcePropType {
     case '50n':
       return Icon0450
     default:
-      return Icon01d
+      break
   }
 }

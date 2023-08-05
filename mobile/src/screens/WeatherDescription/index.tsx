@@ -22,6 +22,8 @@ export function WeatherDescription() {
 
   const { weatherInfo } = route.params as RouteParams
 
+  const weatherIcon = weatherIcons(weatherInfo.weather?.[0]?.icon)
+
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -29,12 +31,12 @@ export function WeatherDescription() {
       </View>
       <View style={styles.weatherInfoContent}>
         <Text style={styles.weatherDescription}>
-          {capitalize(weatherInfo.weather?.[0].description)}
+          {capitalize(weatherInfo.weather?.[0]?.description)}
         </Text>
-        {weatherInfo.weather?.[0].icon && (
+        {weatherIcon && (
           <Image
             style={styles.weatherIcon}
-            source={weatherIcons(weatherInfo.weather?.[0].icon)}
+            source={weatherIcon}
             alt="Weather icon"
           />
         )}

@@ -6,6 +6,8 @@ import { weatherIcons } from '../../utils/weatherIcons'
 import { styles } from './styles'
 
 export const HomeCard = ({ data, ...rest }: HomeCardProps) => {
+  const weatherIcon = weatherIcons(data.weather?.[0]?.icon)
+
   return (
     <RectButton style={styles.container} {...rest}>
       <View style={styles.countryContent}>
@@ -13,10 +15,10 @@ export const HomeCard = ({ data, ...rest }: HomeCardProps) => {
         <Text style={styles.countryNameSys}>{data.sys?.country}</Text>
       </View>
       <View style={styles.weatherContent}>
-        {data.weather?.[0].icon && (
+        {weatherIcon && (
           <Image
             style={styles.weatherIcon}
-            source={weatherIcons(data.weather?.[0].icon)}
+            source={weatherIcon}
             alt="Weather icon"
           />
         )}
